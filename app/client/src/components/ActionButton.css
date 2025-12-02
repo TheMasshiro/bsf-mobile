@@ -1,0 +1,11 @@
+ion-fab-button {
+  --border-radius: 15px;
+  --box-shadow:
+    0px 1px 2px 0px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+  --color: black;
+}
+
+ion-fab {
+  margin-bottom: calc(var(--ion-safe-area-bottom, 0) + 53px);
+  margin-right: calc(var(--ion-safe-area-right, 0) + 1px);
+}

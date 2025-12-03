@@ -1,9 +1,9 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import './Settings.css';
-import { ClickableCard } from '../components/Buttons';
-import PlainCard from '../components/Cards';
+import './Menu.css';
+import { ClickableCardButton } from '../components/Buttons';
+import { PlainCard } from '../components/Cards';
 
-const SettingsPage: React.FC = () => {
+const MenuPage: React.FC = () => {
     return (
         <IonPage>
             <IonHeader>
@@ -17,31 +17,39 @@ const SettingsPage: React.FC = () => {
                         <IonTitle size="large">Settings</IonTitle>
                     </IonToolbar>
                 </IonHeader>
-                <ClickableCard
+                <ClickableCardButton
                     title={"Profile"}
                     content={"Hello, User Name"}
                     onClick={() => { console.log("Profile Clicked") }}
-                ></ClickableCard>
-                <ClickableCard
+                ></ClickableCardButton>
+                <ClickableCardButton
                     title={"Backup Data"}
                     content={"Manually Backup Data"}
-                    color={"tertiary"}
                     onClick={() => { console.log("Profile Clicked") }}
-                ></ClickableCard>
+                ></ClickableCardButton>
+                <ClickableCardButton
+                    title={"View Data"}
+                    content={"View backup data"}
+                    onClick={() => { console.log("Profile Clicked") }}
+                ></ClickableCardButton>
                 <PlainCard
                     title={"Automatic Backup"}
-                    color={"primary"}
                     content={"Data will be backed up every day at midnight"}
                 ></PlainCard>
-                <ClickableCard
+                <ClickableCardButton
+                    title={"Settings"}
+                    content={""}
+                    onClick={() => { console.log("Profile Clicked") }}
+                ></ClickableCardButton>
+                <ClickableCardButton
                     title={"Sign Out"}
                     content={""}
                     color={"danger"}
                     onClick={() => { console.log("Profile Clicked") }}
-                ></ClickableCard>
+                ></ClickableCardButton>
             </IonContent>
         </IonPage >
     );
 };
 
-export default SettingsPage;
+export default MenuPage;

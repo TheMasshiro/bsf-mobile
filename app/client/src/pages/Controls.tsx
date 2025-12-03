@@ -2,7 +2,7 @@ import { IonButtons, IonChip, IonCol, IonContent, IonGrid, IonHeader, IonLabel, 
 import './Controls.css';
 import ControlToggle from '../components/Toggle';
 import { useLifeCycle } from '../context/LifeCycleContext';
-import TimeSelection from '../components/RadioButton';
+import { TimeSelection } from '../components/RadioButton';
 
 const ControlsPage: React.FC = () => {
     const { currentLifeCycle } = useLifeCycle()

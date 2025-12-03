@@ -1,6 +1,6 @@
 import { IonButtons, IonChip, IonCol, IonContent, IonGrid, IonHeader, IonLabel, IonPage, IonRow, IonTitle, IonToolbar } from '@ionic/react';
 import './Controls.css';
-import ControlToggle from '../components/Toggle';
+import { ActuatorToggle } from '../components/Toggle';
 import { useLifeCycle } from '../context/LifeCycleContext';
 import { TimeSelection } from '../components/RadioButton';
 
@@ -54,13 +54,13 @@ const ControlsPage: React.FC = () => {
                     <IonRow>
                         {controls.map((control, index) => (
                             <IonCol key={index} size="12" sizeMd="6" sizeLg="4">
-                                <ControlToggle
+                                <ActuatorToggle
                                     key={index}
                                     title={control.title}
                                     cardTitle={control.card}
                                     helperText={control.helper}
                                     errorText={control.error}
-                                ></ControlToggle>
+                                ></ActuatorToggle>
                             </IonCol>
                         ))}
                     </IonRow>

@@ -6,6 +6,6 @@ ion-fab-button {
 }
 
 ion-fab {
-  margin-bottom: calc(var(--ion-safe-area-bottom, 0) + 53px);
+  margin-bottom: calc(var(--ion-safe-area-bottom, 0) + 59px);
   margin-right: calc(var(--ion-safe-area-right, 0) + 1px);
 }

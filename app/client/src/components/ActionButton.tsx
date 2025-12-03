@@ -3,10 +3,9 @@ import { useLifeCycle } from '../context/LifeCycleContext';
 import {
     ellipse, bug, leaf, flower, chevronDownCircle,
 } from 'ionicons/icons';
-
 import './ActionButton.css';
 
-function LifeCycleButton() {
+export function LifeCycleButton() {
     const { currentLifeCycle, setCurrentLifeCycle } = useLifeCycle();
 
     const stages: Array<"egg" | "larva" | "pupa" | "adult"> = ["egg", "larva",
@@ -20,7 +19,7 @@ function LifeCycleButton() {
 
     return (
         <IonFab slot="fixed" vertical="bottom" horizontal="end">
-            <IonFabButton mode="ios" size="small">
+            <IonFabButton mode="ios">
                 <IonIcon icon={chevronDownCircle}></IonIcon>
             </IonFabButton>
             <IonFabList side="top">
@@ -36,5 +35,3 @@ function LifeCycleButton() {
         </IonFab >
     )
 }
-
-export default LifeCycleButton;

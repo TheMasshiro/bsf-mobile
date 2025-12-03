@@ -3,8 +3,16 @@ import annotationPlugin from 'chartjs-plugin-annotation';
 import Chart from 'chart.js/auto';
 import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle } from '@ionic/react';
 
+interface BarGraph {
+    sensorType: string,
+    upperLimit: number,
+    lowerLimit: number,
+    warningLimit: number,
+
+}
+
 Chart.register(annotationPlugin);
-function BarGraph({ sensorType, upperLimit, lowerLimit, warningLimit }: { sensorType: string, upperLimit: number, lowerLimit: number, warningLimit: number }) {
+function BarGraph({ sensorType, upperLimit, lowerLimit, warningLimit }: BarGraph) {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const chartRef = useRef<Chart | null>(null);
 
@@ -102,31 +110,6 @@ function BarGraph({ sensorType, upperLimit, lowerLimit, warningLimit }: { sensor
         }
     };
 
-    const getBarColor = () => {
-        switch (sensorType.toLowerCase()) {
-            case "temperature":
-                return {
-                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                    borderColor: 'rgb(255, 99, 132)'
-                };
-            case "humidity":
-                return {
-                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                    borderColor: 'rgb(54, 162, 235)'
-                };
-            case "moisture":
-                return {
-                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                    borderColor: 'rgb(75, 192, 192)'
-                };
-            default:
-                return {
-                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                    borderColor: 'rgb(75, 192, 192)'
-                };
-        }
-    };
-
     const getLabel = () => {
         switch (sensorType.toLowerCase()) {
             case "temperature":
@@ -154,7 +137,6 @@ function BarGraph({ sensorType, upperLimit, lowerLimit, warningLimit }: { sensor
 
     const chartData = getData();
     const chartLabel = getLabel();
-    const colors = getBarColor();
 
     useEffect(() => {
         if (canvasRef.current) {
@@ -169,8 +151,18 @@ function BarGraph({ sensorType, upperLimit, lowerLimit, warningLimit }: { sensor
                     datasets: [{
                         label: `${chartLabel.unit} ${chartLabel.symbol}`,
                         data: chartData.map(row => row.value),
-                        backgroundColor: colors.backgroundColor,
-                        borderColor: colors.borderColor,
+                        backgroundColor: chartData.map(row => {
+                            if (row.value >= upperLimit) return 'rgba(255, 99, 132, 0.5)';
+                            if (row.value >= warningLimit) return 'rgba(255, 205, 86, 0.5)';
+                            if (row.value <= lowerLimit) return 'rgba(54, 162, 235, 0.5)';
+                            return 'rgba(147, 197, 253, 0.5)';
+                        }),
+                        borderColor: chartData.map(row => {
+                            if (row.value >= upperLimit) return 'rgba(255, 99, 132, 0.8)';
+                            if (row.value >= warningLimit) return 'rgba(255, 205, 86, 0.8)';
+                            if (row.value <= lowerLimit) return 'rgba(54, 162, 235, 0.8)';
+                            return 'rgba(96, 165, 250, 0.8)';
+                        }),
                         borderWidth: 1
                     }]
                 },

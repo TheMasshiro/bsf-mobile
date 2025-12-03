@@ -8,10 +8,7 @@ interface Time {
     seconds: number;
 }
 
-
-
-
-function TimeSelection() {
+export function TimeSelection() {
     const compareWith = (o1: Time, o2: Time) => {
         return o1.id === o2.id;
     };
@@ -45,7 +42,7 @@ function TimeSelection() {
         })
     }
     return (
-        <IonCard mode="ios">
+        <IonCard>
             <IonCardHeader>
                 <IonCardSubtitle>Set time for light</IonCardSubtitle>
                 <IonCardTitle>Select Time:</IonCardTitle>
@@ -72,4 +69,3 @@ function TimeSelection() {
         </IonCard>
     );
 }
-export default TimeSelection;

@@ -1,15 +1,20 @@
-import { IonCard, IonCardContent, IonCardHeader, IonCardTitle } from '@ionic/react';
+import { IonButton, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle } from '@ionic/react';
 
-function ClickableCard({ title, content, color, onClick }: { title: string, content: string, color?: string, onClick?: () => void }) {
+export function ClickableCard({ title, content, color, onClick }: { title: string, content: string, color?: string, onClick?: () => void }) {
     return (
         <IonCard mode="ios" color={color} button onClick={onClick} style={{ cursor: 'pointer' }}>
             <IonCardHeader>
+                <IonCardSubtitle>
+                    {content}
+                </IonCardSubtitle>
                 <IonCardTitle>{title}</IonCardTitle>
             </IonCardHeader>
-            <IonCardContent>
-                {content}
-            </IonCardContent>
         </IonCard>
     );
 }
-export default ClickableCard;
+
+export function Button({ title, disabled, onClick }: { title: string, disabled?: boolean, onClick?: () => void }) {
+    return (
+        <IonButton fill="outline" onClick={onClick} disabled={disabled}>{title}</IonButton>
+    )
+}

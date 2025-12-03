@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Redirect, Route } from 'react-router-dom';
 import {
     IonApp,
@@ -49,65 +50,80 @@ import '@ionic/react/css/palettes/dark.system.css';
 import './theme/variables.css';
 import { LifeCycleButton } from './components/ActionButton';
 import { LifeCycleProvider } from './context/LifeCycleContext';
+import { registerNotifications, addListeners } from './utils/pushNotification';
 
 setupIonicReact();
 
-const App: React.FC = () => (
-    <IonApp>
-        <LifeCycleProvider>
-            <LifeCycleButton />
-            <IonReactRouter>
-                <IonTabs>
-                    <IonRouterOutlet>
-                        <Route exact path="/sensors">
-                            <SensorsPage />
-                        </Route>
-                        <Route exact path="/controls">
-                            <ControlsPage />
-                        </Route>
-                        <Route exact path="/notifications">
-                            <NotificationsPage />
-                        </Route>
-                        <Route path="/analytics">
-                            <AnalyticsPage />
-                        </Route>
-                        <Route path="/menu">
-                            <MenuPage />
-                        </Route>
-                        <Route exact path="/">
-                            <Redirect to="/sensors" />
-                        </Route>
-                    </IonRouterOutlet>
-                    <IonTabBar slot="bottom">
-                        <IonTabButton tab="sensors" href="/sensors">
-                            <IonIcon aria-hidden="true" icon={thermometerOutline} />
-                            <IonLabel>Sensors</IonLabel>
-                        </IonTabButton>
+const App: React.FC = () => {
+    useEffect(() => {
+        const initNotifications = async () => {
+            try {
+                await addListeners();
+                await registerNotifications();
+            } catch (error) {
+                console.error('Notification registration failed:', error);
+            }
+        };
+        initNotifications();
+    }, []);
 
-                        <IonTabButton tab="controls" href="/controls">
-                            <IonIcon aria-hidden="true" icon={toggleOutline} />
-                            <IonLabel>Controls</IonLabel>
-                        </IonTabButton>
+    return (
+        <IonApp>
+            <LifeCycleProvider>
+                <LifeCycleButton />
+                <IonReactRouter>
+                    <IonTabs>
+                        <IonRouterOutlet>
+                            <Route exact path="/sensors">
+                                <SensorsPage />
+                            </Route>
+                            <Route exact path="/controls">
+                                <ControlsPage />
+                            </Route>
+                            <Route exact path="/notifications">
+                                <NotificationsPage />
+                            </Route>
+                            <Route path="/analytics">
+                                <AnalyticsPage />
+                            </Route>
+                            <Route path="/menu">
+                                <MenuPage />
+                            </Route>
+                            <Route exact path="/">
+                                <Redirect to="/sensors" />
+                            </Route>
+                        </IonRouterOutlet>
+                        <IonTabBar slot="bottom">
+                            <IonTabButton tab="sensors" href="/sensors">
+                                <IonIcon aria-hidden="true" icon={thermometerOutline} />
+                                <IonLabel>Sensors</IonLabel>
+                            </IonTabButton>
 
-                        <IonTabButton tab="analytics" href="/analytics">
-                            <IonIcon aria-hidden="true" icon={analyticsOutline} />
-                            <IonLabel>Analytics</IonLabel>
-                        </IonTabButton>
+                            <IonTabButton tab="controls" href="/controls">
+                                <IonIcon aria-hidden="true" icon={toggleOutline} />
+                                <IonLabel>Controls</IonLabel>
+                            </IonTabButton>
 
-                        <IonTabButton tab="notifications" href="/notifications">
-                            <IonIcon aria-hidden="true" icon={notificationsCircleOutline} />
-                            <IonLabel>Notifications</IonLabel>
-                        </IonTabButton>
+                            <IonTabButton tab="analytics" href="/analytics">
+                                <IonIcon aria-hidden="true" icon={analyticsOutline} />
+                                <IonLabel>Analytics</IonLabel>
+                            </IonTabButton>
 
-                        <IonTabButton tab="menu" href="/menu">
-                            <IonIcon aria-hidden="true" icon={menuOutline} />
-                            <IonLabel>More</IonLabel>
-                        </IonTabButton>
-                    </IonTabBar>
-                </IonTabs>
-            </IonReactRouter>
-        </LifeCycleProvider>
-    </IonApp>
-);
+                            <IonTabButton tab="notifications" href="/notifications">
+                                <IonIcon aria-hidden="true" icon={notificationsCircleOutline} />
+                                <IonLabel>Notifications</IonLabel>
+                            </IonTabButton>
+
+                            <IonTabButton tab="menu" href="/menu">
+                                <IonIcon aria-hidden="true" icon={menuOutline} />
+                                <IonLabel>More</IonLabel>
+                            </IonTabButton>
+                        </IonTabBar>
+                    </IonTabs>
+                </IonReactRouter>
+            </LifeCycleProvider>
+        </IonApp>
+    );
+};
 
 export default App;

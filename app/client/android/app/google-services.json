@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "136651652196",
+    "project_id": "bsf-mobile",
+    "storage_bucket": "bsf-mobile.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:136651652196:android:ed2cc89cb9f8ad92727371",
+        "android_client_info": {
+          "package_name": "cpe.bsf.mobile"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEb72dBxyO-T57TXvTbbYd68Uq3hORyWg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

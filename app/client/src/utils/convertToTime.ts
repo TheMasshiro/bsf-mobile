@@ -8,7 +8,7 @@ export function secondsToTime(seconds: number): string {
   const formattedMinutes = String(minutes).padStart(2, "0");
 
   if (hours < 1) {
-    return `${formattedHours}:${formattedMinutes} minutes left`;
+    return `${formattedHours}:${formattedMinutes} minutes`;
   }
-  return `${formattedHours}:${formattedMinutes} hours left`;
+  return `${formattedHours}:${formattedMinutes} hours`;
 }

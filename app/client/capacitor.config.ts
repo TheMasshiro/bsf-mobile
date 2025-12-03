@@ -1,9 +1,9 @@
-import type { CapacitorConfig } from '@capacitor/cli';
+import type { CapacitorConfig } from "@capacitor/cli";
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
-  appName: 'client',
-  webDir: 'dist'
+  appId: "cpe.bsf.mobile",
+  appName: "BSF Mobile",
+  webDir: "dist",
 };
 
 export default config;

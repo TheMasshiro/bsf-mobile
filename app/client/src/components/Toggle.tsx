@@ -1,18 +1,31 @@
 import { useRef, useState } from 'react';
 import { IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonToggle, ToggleCustomEvent, useIonToast } from '@ionic/react';
+import { actuatorNotification } from '../utils/localNotification';
 
-function ControlToggle({ title, cardTitle, helperText, errorText }: { title: string, cardTitle: string, helperText: string, errorText: string }) {
+interface ActuatorToggle {
+    title: string,
+    cardTitle: string,
+    helperText: string,
+    errorText: string,
+}
+
+export function ActuatorToggle({ title, cardTitle, helperText, errorText }: ActuatorToggle) {
     const wifiRef = useRef<HTMLIonToggleElement>(null);
 
     const [isTouched, setIsTouched] = useState<boolean>(false);
     const [isValid, setIsValid] = useState<boolean | undefined>();
     const [isChecked, setIsChecked] = useState<boolean>(false);
 
-    const validateToggle = (event: ToggleCustomEvent<{ checked: boolean }>) => {
+    const validateToggle = async (event: ToggleCustomEvent<{ checked: boolean }>) => {
         setIsTouched(true);
         setIsChecked(event.detail.checked);
         setIsValid(event.detail.checked);
-        presentToast(event.detail.checked ? `${cardTitle} turned on` : `${cardTitle} turned off`)
+        const message = event.detail.checked ? `${cardTitle} turned on` : `${cardTitle} turned off`;
+        presentToast(message);
+        await actuatorNotification({
+            title: cardTitle,
+            body: message
+        });
     };
 
     const [present] = useIonToast();
@@ -51,5 +64,3 @@ function ControlToggle({ title, cardTitle, helperText, errorText }: { title: str
         </IonCard>
     );
 }
-
-export default ControlToggle;

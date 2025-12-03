@@ -45,17 +45,9 @@ cd client
 npm install
 ```
 
-#### Go Back to App Directory
-
-```bash
-cd ..
-```
-
-You should now be in the `app` directory.
-
 ## Running the Application
 
-From the `app` directory, run:
+From the `client` directory, run:
 
 ```bash
 npx ionic serve
@@ -116,7 +108,7 @@ bsf-mobile/
 │   │   ├── public/
 │   │   └── package.json
 │   └── package.json     # Ionic CLI dependency
-└── SETUP.md            # This file
+└── README.md            # This file
 ```
 
 ## Quick Reference Commands
@@ -128,7 +120,6 @@ cd bsf-mobile/app
 npm install
 cd client
 npm install
-cd ..
 npx ionic serve
 
 # Just run the app (after setup)

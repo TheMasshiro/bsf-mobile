@@ -47,7 +47,7 @@ import '@ionic/react/css/palettes/dark.system.css';
 
 /* Theme variables */
 import './theme/variables.css';
-import ActionButton from './components/ActionButton';
+import LifeCycleButton from './components/ActionButton';
 import { LifeCycleProvider } from './context/LifeCycleContext';
 
 setupIonicReact();
@@ -55,7 +55,7 @@ setupIonicReact();
 const App: React.FC = () => (
     <IonApp>
         <LifeCycleProvider>
-            <ActionButton />
+            <LifeCycleButton />
             <IonReactRouter>
                 <IonTabs>
                     <IonRouterOutlet>

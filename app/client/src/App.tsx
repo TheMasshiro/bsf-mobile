@@ -50,22 +50,22 @@ import '@ionic/react/css/palettes/dark.system.css';
 import './theme/variables.css';
 import { LifeCycleButton } from './components/ActionButton';
 import { LifeCycleProvider } from './context/LifeCycleContext';
-import { registerNotifications, addListeners } from './utils/pushNotification';
+// import { registerNotifications, addListeners } from './utils/pushNotification';
 
 setupIonicReact();
 
 const App: React.FC = () => {
-    useEffect(() => {
-        const initNotifications = async () => {
-            try {
-                await addListeners();
-                await registerNotifications();
-            } catch (error) {
-                console.error('Notification registration failed:', error);
-            }
-        };
-        initNotifications();
-    }, []);
+    // useEffect(() => {
+    //     const initNotifications = async () => {
+    //         try {
+    //             await addListeners();
+    //             await registerNotifications();
+    //         } catch (error) {
+    //             console.error('Notification registration failed:', error);
+    //         }
+    //     };
+    //     initNotifications();
+    // }, []);
 
     return (
         <IonApp>

@@ -8,13 +8,13 @@ const MenuPage: React.FC = () => {
         <IonPage>
             <IonHeader>
                 <IonToolbar>
-                    <IonTitle>Settings</IonTitle>
+                    <IonTitle>More</IonTitle>
                 </IonToolbar>
             </IonHeader>
             <IonContent fullscreen>
                 <IonHeader collapse="condense">
                     <IonToolbar>
-                        <IonTitle size="large">Settings</IonTitle>
+                        <IonTitle size="large">More</IonTitle>
                     </IonToolbar>
                 </IonHeader>
                 <ClickableCardButton

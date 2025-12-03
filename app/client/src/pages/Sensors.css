@@ -2,3 +2,24 @@ ion-card {
   margin-top: 5px;
   margin-bottom: 5px;
 }
+
+.good-chip {
+  --background: #2dd55b;
+  --color: #000;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.warning-chip {
+  --background: #ffc409;
+  --color: #000;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.danger-chip {
+  --background: #f24c58;
+  --color: #000;
+  font-weight: bold;
+  font-size: 14px;
+}

@@ -1,6 +1,6 @@
-import { IonButtons, IonChip, IonCol, IonContent, IonGrid, IonHeader, IonLabel, IonPage, IonRow, IonTitle, IonToolbar } from '@ionic/react';
+import { IonButtons, IonCard, IonChip, IonCol, IonContent, IonGrid, IonHeader, IonLabel, IonPage, IonRow, IonTitle, IonToolbar } from '@ionic/react';
 import './Sensors.css';
-import SensorCard from '../components/SensorCard';
+import { PlainCard, SensorCard } from '../components/Cards';
 import { useLifeCycle } from '../context/LifeCycleContext';
 
 const SensorsPage: React.FC = () => {
@@ -58,6 +58,17 @@ const SensorsPage: React.FC = () => {
                     </IonToolbar>
                 </IonHeader>
                 <IonGrid>
+                    <IonRow class="ion-justify-content-center ion-align-items-center">
+                        <IonChip class="good-chip">
+                            <IonLabel>Good</IonLabel>
+                        </IonChip>
+                        <IonChip class="warning-chip">
+                            <IonLabel>Warning</IonLabel>
+                        </IonChip>
+                        <IonChip class="danger-chip">
+                            <IonLabel>Danger</IonLabel>
+                        </IonChip>
+                    </IonRow>
                     <IonRow>
                         {sensors.map((sensor, index) => (
                             <IonCol key={index} size="12" sizeMd="6" sizeLg="4">

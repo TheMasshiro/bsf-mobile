@@ -10,13 +10,13 @@ import {
     setupIonicReact
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { thermometerOutline, toggleOutline, notificationsCircleOutline, analyticsOutline, settingsOutline } from 'ionicons/icons';
+import { thermometerOutline, toggleOutline, notificationsCircleOutline, analyticsOutline, menuOutline } from 'ionicons/icons';
 
 import SensorsPage from './pages/Sensors';
 import ControlsPage from './pages/Controls';
 import NotificationsPage from './pages/Notifications';
 import AnalyticsPage from './pages/Analytics';
-import SettingsPage from './pages/Settings';
+import MenuPage from './pages/Menu';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -47,7 +47,7 @@ import '@ionic/react/css/palettes/dark.system.css';
 
 /* Theme variables */
 import './theme/variables.css';
-import LifeCycleButton from './components/ActionButton';
+import { LifeCycleButton } from './components/ActionButton';
 import { LifeCycleProvider } from './context/LifeCycleContext';
 
 setupIonicReact();
@@ -71,8 +71,8 @@ const App: React.FC = () => (
                         <Route path="/analytics">
                             <AnalyticsPage />
                         </Route>
-                        <Route path="/settings">
-                            <SettingsPage />
+                        <Route path="/menu">
+                            <MenuPage />
                         </Route>
                         <Route exact path="/">
                             <Redirect to="/sensors" />
@@ -99,9 +99,9 @@ const App: React.FC = () => (
                             <IonLabel>Notifications</IonLabel>
                         </IonTabButton>
 
-                        <IonTabButton tab="settings" href="/settings">
-                            <IonIcon aria-hidden="true" icon={settingsOutline} />
-                            <IonLabel>Settings</IonLabel>
+                        <IonTabButton tab="menu" href="/menu">
+                            <IonIcon aria-hidden="true" icon={menuOutline} />
+                            <IonLabel>More</IonLabel>
                         </IonTabButton>
                     </IonTabBar>
                 </IonTabs>

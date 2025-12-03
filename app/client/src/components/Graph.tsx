@@ -211,6 +211,12 @@ function BarGraph({ sensorType, upperLimit, lowerLimit, warningLimit }: { sensor
                             position: 'top',
                             align: 'center',
                             labels: {
+                                font: {
+                                    size: 12,
+                                },
+                                padding: 8,
+                                boxWidth: 22,
+                                boxHeight: 5,
                                 generateLabels: (chart) => {
                                     const original = Chart.defaults.plugins.legend.labels.generateLabels(chart);
                                     original.push(

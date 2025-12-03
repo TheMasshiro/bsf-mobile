@@ -1,6 +1,6 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import './Settings.css';
-import ClickableCard from '../components/Buttons';
+import { ClickableCard } from '../components/Buttons';
 import PlainCard from '../components/Cards';
 
 const SettingsPage: React.FC = () => {

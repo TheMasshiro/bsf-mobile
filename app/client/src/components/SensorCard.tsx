@@ -16,7 +16,7 @@ function SensorCard({ title, value, unit }: { title: string; value: number, unit
     };
 
     const displayValue = title.toLowerCase() === "photoperiod"
-        ? secondsToTime(value)
+        ? `${secondsToTime(value)} left`
         : `${value}${unit}`;
 
     const sensorType = sensorTypeMap[title.toLowerCase()];

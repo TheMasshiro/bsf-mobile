@@ -6,7 +6,7 @@ import {
 
 import './ActionButton.css';
 
-function ActionButton() {
+function LifeCycleButton() {
     const { currentLifeCycle, setCurrentLifeCycle } = useLifeCycle();
 
     const stages: Array<"egg" | "larva" | "pupa" | "adult"> = ["egg", "larva",
@@ -37,4 +37,4 @@ function ActionButton() {
     )
 }
 
-export default ActionButton;
+export default LifeCycleButton;

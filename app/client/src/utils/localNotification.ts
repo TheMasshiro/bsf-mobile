@@ -1,6 +1,6 @@
 import { LocalNotifications } from "@capacitor/local-notifications";
 
-export async function createActuatorNotifications(body: string) {
+export async function createActuatorNotifications(title: string, body: string) {
   const check = await LocalNotifications.checkPermissions();
   const res = await LocalNotifications.requestPermissions();
   if (res.display === "granted") {
@@ -14,10 +14,10 @@ export async function createActuatorNotifications(body: string) {
           {
             channelId: "1",
             id: 1,
-            title: `BSF Mobile`,
+            title: title,
             body: body,
             schedule: {
-              at: new Date(Date.now() + 1000),
+              at: new Date(Date.now()),
               allowWhileIdle: true,
             },
             ongoing: false,

@@ -22,7 +22,7 @@ export function ActuatorToggle({ title, cardTitle, helperText, errorText }: Actu
         setIsValid(event.detail.checked);
         const message = event.detail.checked ? `${cardTitle} turned on` : `${cardTitle} turned off`;
         presentToast(message);
-        await createActuatorNotifications(message);
+        await createActuatorNotifications(cardTitle, message);
     };
 
     const [present] = useIonToast();

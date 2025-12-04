@@ -56,7 +56,7 @@ export function TimeSelection() {
                         onIonChange={async (event) => {
                             const message = event.detail.value.seconds ? `Light timer set to ${secondsToTime(event.detail.value.seconds)}` : `Light timer disabled`;
                             presentToast(message);
-                            await createActuatorNotifications(message);
+                            await createActuatorNotifications("Light Timer", message);
                         }}
                     >
                         {times.map((time) => (

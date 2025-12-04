@@ -3,8 +3,9 @@ import './Analytics.css';
 import BarGraph from '../../components/AppGraph/Graph';
 import { useLifeCycle } from '../../context/LifeCycleContext';
 import { lifecycleThresholds } from '../../config/LifeCycleThresholds';
+import { FC } from 'react';
 
-const AnalyticsPage: React.FC = () => {
+const AnalyticsPage: FC = () => {
     const { currentLifeCycle } = useLifeCycle()
     const stageLabels = {
         egg: 'Egg', larva: 'Larva', pupa: 'Pupa', adult:

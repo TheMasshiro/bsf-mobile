@@ -3,8 +3,9 @@ import './Controls.css';
 import { ActuatorToggle } from '../../components/AppToggles/Toggles';
 import { useLifeCycle } from '../../context/LifeCycleContext';
 import { TimeSelection } from '../../components/AppRadioButtons/RadioButtons';
+import { FC } from 'react';
 
-const ControlsPage: React.FC = () => {
+const ControlsPage: FC = () => {
     const { currentLifeCycle } = useLifeCycle()
     const stageLabels = {
         egg: 'Egg', larva: 'Larva', pupa: 'Pupa', adult:

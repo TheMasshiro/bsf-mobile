@@ -2,8 +2,9 @@ import { IonButtons, IonChip, IonCol, IonContent, IonGrid, IonHeader, IonLabel, 
 import './Sensors.css';
 import { SensorCard } from '../../components/AppCards/Cards';
 import { useLifeCycle } from '../../context/LifeCycleContext';
+import { FC } from 'react';
 
-const SensorsPage: React.FC = () => {
+const SensorsPage: FC = () => {
     const { currentLifeCycle } = useLifeCycle()
     const stageLabels = {
         egg: 'Egg', larva: 'Larva', pupa: 'Pupa', adult:

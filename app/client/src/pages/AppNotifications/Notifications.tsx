@@ -1,7 +1,8 @@
 import { IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import './Notifications.css';
+import { FC } from 'react';
 
-function NotificationsPage() {
+const NotificationsPage: FC = () => {
     return (
         <IonPage>
             <IonHeader>

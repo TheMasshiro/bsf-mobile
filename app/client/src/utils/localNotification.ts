@@ -1,13 +1,14 @@
 import { LocalNotifications } from "@capacitor/local-notifications";
+import { platform } from "../App";
 
 export async function createActuatorNotifications(
   id: number,
   title: string,
-  body: string,
+  body: string
 ) {
   await LocalNotifications.checkPermissions();
   const res = await LocalNotifications.requestPermissions();
-  if (res.display === "granted") {
+  if (res.display === "granted" && platform !== "web") {
     LocalNotifications.createChannel({
       id: "1",
       name: "Actuators Alert",
@@ -27,7 +28,7 @@ export async function createActuatorNotifications(
             iconColor: "#0000FF",
           },
         ],
-      }),
+      })
     );
   }
 }

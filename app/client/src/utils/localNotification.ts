@@ -1,6 +1,10 @@
 import { LocalNotifications } from "@capacitor/local-notifications";
 
-export async function createActuatorNotifications(title: string, body: string) {
+export async function createActuatorNotifications(
+  id: number,
+  title: string,
+  body: string,
+) {
   await LocalNotifications.checkPermissions();
   const res = await LocalNotifications.requestPermissions();
   if (res.display === "granted") {
@@ -13,7 +17,7 @@ export async function createActuatorNotifications(title: string, body: string) {
         notifications: [
           {
             channelId: "1",
-            id: Math.ceil(Math.random() * 100),
+            id: id,
             title: title,
             body: body,
             schedule: {

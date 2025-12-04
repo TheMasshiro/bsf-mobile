@@ -16,14 +16,28 @@ export function ActuatorToggle({ title, cardTitle, helperText, errorText }: Actu
     const [isValid, setIsValid] = useState<boolean | undefined>();
     const [isChecked, setIsChecked] = useState<boolean>(false);
 
+    const getNotificationId = () => {
+        switch (cardTitle.toLocaleLowerCase()) {
+            case "fan":
+                return 1
+            case "misting device":
+                return 2
+            case "heater":
+                return 3
+            default:
+                return 1
+        }
+    }
+
     const validateToggle = async (event: ToggleCustomEvent<{ checked: boolean }>) => {
         setIsTouched(true);
         setIsChecked(event.detail.checked);
         setIsValid(event.detail.checked);
         const message = event.detail.checked ? `${cardTitle} turned on` : `${cardTitle} turned off`;
         presentToast(message);
-        await createActuatorNotifications(cardTitle, message);
+        await createActuatorNotifications(getNotificationId(), cardTitle, message);
     };
+
 
     const [present] = useIonToast();
 

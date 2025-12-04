@@ -16,17 +16,17 @@ export function TimeSelection() {
 
     const times: Time[] = [
         {
-            id: 1,
+            id: 4,
             name: '0 Hour',
             seconds: 0,
         },
         {
-            id: 2,
+            id: 5,
             name: '8 Hours',
             seconds: 28800,
         },
         {
-            id: 3,
+            id: 6,
             name: '12 Hours',
             seconds: 43200,
         },
@@ -56,7 +56,7 @@ export function TimeSelection() {
                         onIonChange={async (event) => {
                             const message = event.detail.value.seconds ? `Light timer set to ${secondsToTime(event.detail.value.seconds)}` : `Light timer disabled`;
                             presentToast(message);
-                            await createActuatorNotifications("Light Timer", message);
+                            await createActuatorNotifications(event.detail.value.id, "Light Timer", message);
                         }}
                     >
                         {times.map((time) => (

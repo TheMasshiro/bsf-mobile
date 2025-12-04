@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 import { Redirect, Route } from 'react-router-dom';
 import {
     IonApp,
@@ -13,11 +13,11 @@ import {
 import { IonReactRouter } from '@ionic/react-router';
 import { thermometerOutline, toggleOutline, notificationsCircleOutline, analyticsOutline, menuOutline } from 'ionicons/icons';
 
-import SensorsPage from './pages/Sensors';
-import ControlsPage from './pages/Controls';
-import NotificationsPage from './pages/Notifications';
-import AnalyticsPage from './pages/Analytics';
-import MenuPage from './pages/Menu';
+import SensorsPage from './pages/AppSensors/Sensors';
+import ControlsPage from './pages/AppControls/Controls';
+import NotificationsPage from './pages/AppNotifications/Notifications';
+import AnalyticsPage from './pages/AppAnalytics/Analytics';
+import MenuPage from './pages/AppMenu/Menu';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -48,8 +48,11 @@ import '@ionic/react/css/palettes/dark.system.css';
 
 /* Theme variables */
 import './theme/variables.css';
-import { LifeCycleButton } from './components/ActionButton';
+import { LifeCycleButton } from './components/AppActionButtons/ActionButtons';
 import { LifeCycleProvider } from './context/LifeCycleContext';
+import { Capacitor } from '@capacitor/core';
+
+export const platform = Capacitor.getPlatform();
 
 setupIonicReact();
 

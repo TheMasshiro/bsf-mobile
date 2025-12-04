@@ -1,7 +1,7 @@
 import { IonCard, IonCardContent, IonCardTitle, IonCardHeader, IonItem, IonList, IonRadio, IonRadioGroup, IonCardSubtitle, useIonToast } from '@ionic/react';
-import "./RadioButton.css"
-import { secondsToTime } from '../utils/convertToTime';
-import { createActuatorNotifications } from '../utils/localNotification';
+import "./RadioButtons.css"
+import { secondsToTime } from '../../utils/convertToTime';
+import { createActuatorNotifications } from '../../utils/localNotification';
 
 interface Time {
     id: number;
@@ -17,7 +17,7 @@ export function TimeSelection() {
     const times: Time[] = [
         {
             id: 1,
-            name: '0 Hour',
+            name: 'Disabled',
             seconds: 0,
         },
         {

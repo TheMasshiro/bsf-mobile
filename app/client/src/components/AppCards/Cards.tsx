@@ -1,7 +1,7 @@
 import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle } from '@ionic/react';
-import { getStatus, lifecycleThresholds, Threshold } from '../config/LifeCycleThresholds';
-import { useLifeCycle } from '../context/LifeCycleContext';
-import { secondsToTime } from '../utils/convertToTime';
+import { getStatus, lifecycleThresholds, Threshold } from '../../config/LifeCycleThresholds';
+import { useLifeCycle } from '../../context/LifeCycleContext';
+import { secondsToTime } from '../../utils/convertToTime';
 
 interface SensorCard {
     title: string,

@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonToggle, ToggleCustomEvent, useIonToast } from '@ionic/react';
-import { createActuatorNotifications } from '../utils/localNotification';
+import { createActuatorNotifications } from '../../utils/localNotification';
 
 interface ActuatorToggle {
     title: string,

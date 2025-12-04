@@ -1,9 +1,9 @@
 import { IonFab, IonFabButton, IonFabList, IonIcon } from '@ionic/react';
-import { useLifeCycle } from '../context/LifeCycleContext';
+import { useLifeCycle } from '../../context/LifeCycleContext';
 import {
     ellipse, bug, leaf, flower, chevronDownCircle,
 } from 'ionicons/icons';
-import './ActionButton.css';
+import './ActionButtons.css';
 
 export function LifeCycleButton() {
     const { currentLifeCycle, setCurrentLifeCycle } = useLifeCycle();

@@ -1,8 +1,8 @@
 import { IonButtons, IonChip, IonCol, IonContent, IonGrid, IonHeader, IonLabel, IonPage, IonRow, IonTitle, IonToolbar } from '@ionic/react';
 import './Controls.css';
-import { ActuatorToggle } from '../components/Toggle';
-import { useLifeCycle } from '../context/LifeCycleContext';
-import { TimeSelection } from '../components/RadioButton';
+import { ActuatorToggle } from '../../components/AppToggles/Toggles';
+import { useLifeCycle } from '../../context/LifeCycleContext';
+import { TimeSelection } from '../../components/AppRadioButtons/RadioButtons';
 
 const ControlsPage: React.FC = () => {
     const { currentLifeCycle } = useLifeCycle()

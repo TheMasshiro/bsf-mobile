@@ -1,8 +1,8 @@
-import { IonButtons, IonChip, IonCol, IonContent, IonGrid, IonHeader, IonLabel, IonPage, IonRow, IonTitle, IonToolbar } from '@ionic/react';
+import { IonButtons, IonChip, IonContent, IonHeader, IonLabel, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import './Analytics.css';
-import BarGraph from '../components/Graph';
-import { useLifeCycle } from '../context/LifeCycleContext';
-import { lifecycleThresholds } from '../config/LifeCycleThresholds';
+import BarGraph from '../../components/AppGraph/Graph';
+import { useLifeCycle } from '../../context/LifeCycleContext';
+import { lifecycleThresholds } from '../../config/LifeCycleThresholds';
 
 const AnalyticsPage: React.FC = () => {
     const { currentLifeCycle } = useLifeCycle()

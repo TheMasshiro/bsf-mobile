@@ -1,7 +1,7 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import './Menu.css';
-import { ClickableCardButton } from '../components/Buttons';
-import { PlainCard } from '../components/Cards';
+import { ClickableCardButton } from '../../components/AppButtons/Buttons';
+import { PlainCard } from '../../components/AppCards/Cards';
 
 const MenuPage: React.FC = () => {
     return (

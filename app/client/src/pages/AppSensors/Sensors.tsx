@@ -1,7 +1,7 @@
-import { IonButtons, IonCard, IonChip, IonCol, IonContent, IonGrid, IonHeader, IonLabel, IonPage, IonRow, IonTitle, IonToolbar } from '@ionic/react';
+import { IonButtons, IonChip, IonCol, IonContent, IonGrid, IonHeader, IonLabel, IonPage, IonRow, IonTitle, IonToolbar } from '@ionic/react';
 import './Sensors.css';
-import { PlainCard, SensorCard } from '../components/Cards';
-import { useLifeCycle } from '../context/LifeCycleContext';
+import { SensorCard } from '../../components/AppCards/Cards';
+import { useLifeCycle } from '../../context/LifeCycleContext';
 
 const SensorsPage: React.FC = () => {
     const { currentLifeCycle } = useLifeCycle()

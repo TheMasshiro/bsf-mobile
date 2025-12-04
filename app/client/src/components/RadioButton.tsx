@@ -57,7 +57,6 @@ export function TimeSelection() {
                             const message = event.detail.value.seconds ? `Light timer set to ${secondsToTime(event.detail.value.seconds)}` : `Light timer disabled`;
                             presentToast(message);
                             await actuatorNotification({
-                                title: "Light Timer",
                                 body: message
                             });
                         }}

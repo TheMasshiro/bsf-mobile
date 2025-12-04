@@ -23,7 +23,6 @@ export function ActuatorToggle({ title, cardTitle, helperText, errorText }: Actu
         const message = event.detail.checked ? `${cardTitle} turned on` : `${cardTitle} turned off`;
         presentToast(message);
         await actuatorNotification({
-            title: cardTitle,
             body: message
         });
     };

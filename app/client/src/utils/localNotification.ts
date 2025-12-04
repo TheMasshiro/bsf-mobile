@@ -1,20 +1,14 @@
 import { LocalNotifications } from "@capacitor/local-notifications";
 
-interface actuatorNotification {
-  title: string;
-  body: string;
-}
-
-export const actuatorNotification = async ({
-  title,
-  body,
-}: actuatorNotification) => {
+export const actuatorNotification = async ({ body }: { body: string }) => {
   await LocalNotifications.schedule({
     notifications: [
       {
-        title,
-        body,
-        id: Date.now(),
+        title: "BSF Mobile",
+        body: body,
+        id: Math.ceil(Math.random() * 100),
+        schedule: { at: new Date(Date.now() + 1000 * 5) },
+        ongoing: false,
       },
     ],
   });

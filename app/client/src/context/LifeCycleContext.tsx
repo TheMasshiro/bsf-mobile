@@ -1,14 +1,18 @@
-import { createContext, ReactNode, useContext, useState } from "react";
+import { createContext, FC, useContext, useState } from "react";
 
 type LifeCycleStage = "egg" | "larva" | "pupa" | "adult";
+
+interface LifeCycleProps {
+    children: any
+}
 
 const LifeCycleContext = createContext<{
     currentLifeCycle: LifeCycleStage;
     setCurrentLifeCycle: (stage: LifeCycleStage) => void;
 } | undefined>(undefined);
 
-export function LifeCycleProvider({ children }: { children: ReactNode }) {
-    const [currentLifeCycle, setCurrentLifeCycle] = useState<LifeCycleStage>("egg");
+export const LifeCycleProvider: FC<LifeCycleProps> = ({ children }) => {
+    const [currentLifeCycle, setCurrentLifeCycle] = useState<LifeCycleStage>("egg")
 
     return (
         <LifeCycleContext.Provider
@@ -17,7 +21,6 @@ export function LifeCycleProvider({ children }: { children: ReactNode }) {
             }>
             {children}
         </LifeCycleContext.Provider>
-
     )
 }
 

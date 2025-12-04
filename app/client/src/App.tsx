@@ -50,38 +50,10 @@ import '@ionic/react/css/palettes/dark.system.css';
 import './theme/variables.css';
 import { LifeCycleButton } from './components/ActionButton';
 import { LifeCycleProvider } from './context/LifeCycleContext';
-import { LocalNotifications } from '@capacitor/local-notifications';
-// import { registerNotifications, addListeners } from './utils/pushNotification';
 
 setupIonicReact();
 
 const App: React.FC = () => {
-    // useEffect(() => {
-    //     const initNotifications = async () => {
-    //         try {
-    //             await addListeners();
-    //             await registerNotifications();
-    //         } catch (error) {
-    //             console.error('Notification registration failed:', error);
-    //         }
-    //     };
-    //     initNotifications();
-    // }, []);
-
-    useEffect(() => {
-        const initLocalNotifications = async () => {
-            try {
-                const check = await LocalNotifications.checkPermissions();
-                if (check.display !== "granted") {
-                    await LocalNotifications.requestPermissions();
-                }
-            } catch (error) {
-                console.error("Notifications Access Denied: ", error)
-            }
-        }
-        initLocalNotifications();
-    }, [])
-
     return (
         <IonApp>
             <LifeCycleProvider>

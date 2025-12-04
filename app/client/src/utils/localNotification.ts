@@ -1,7 +1,7 @@
 import { LocalNotifications } from "@capacitor/local-notifications";
 
 export async function createActuatorNotifications(title: string, body: string) {
-  const check = await LocalNotifications.checkPermissions();
+  await LocalNotifications.checkPermissions();
   const res = await LocalNotifications.requestPermissions();
   if (res.display === "granted") {
     LocalNotifications.createChannel({
@@ -13,14 +13,14 @@ export async function createActuatorNotifications(title: string, body: string) {
         notifications: [
           {
             channelId: "1",
-            id: 1,
+            id: Math.ceil(Math.random() * 100),
             title: title,
             body: body,
             schedule: {
-              at: new Date(Date.now()),
               allowWhileIdle: true,
             },
             ongoing: false,
+            iconColor: "#0000FF",
           },
         ],
       }),

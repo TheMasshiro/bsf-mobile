@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonToggle, ToggleCustomEvent, useIonToast } from '@ionic/react';
-import { actuatorNotification } from '../utils/localNotification';
+import { createActuatorNotifications } from '../utils/localNotification';
 
 interface ActuatorToggle {
     title: string,
@@ -22,9 +22,7 @@ export function ActuatorToggle({ title, cardTitle, helperText, errorText }: Actu
         setIsValid(event.detail.checked);
         const message = event.detail.checked ? `${cardTitle} turned on` : `${cardTitle} turned off`;
         presentToast(message);
-        await actuatorNotification({
-            body: message
-        });
+        await createActuatorNotifications(message);
     };
 
     const [present] = useIonToast();

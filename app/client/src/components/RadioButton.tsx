@@ -1,7 +1,7 @@
 import { IonCard, IonCardContent, IonCardTitle, IonCardHeader, IonItem, IonList, IonRadio, IonRadioGroup, IonCardSubtitle, useIonToast } from '@ionic/react';
 import "./RadioButton.css"
 import { secondsToTime } from '../utils/convertToTime';
-import { actuatorNotification } from '../utils/localNotification';
+import { createActuatorNotifications } from '../utils/localNotification';
 
 interface Time {
     id: number;
@@ -56,9 +56,7 @@ export function TimeSelection() {
                         onIonChange={async (event) => {
                             const message = event.detail.value.seconds ? `Light timer set to ${secondsToTime(event.detail.value.seconds)}` : `Light timer disabled`;
                             presentToast(message);
-                            await actuatorNotification({
-                                body: message
-                            });
+                            await createActuatorNotifications(message);
                         }}
                     >
                         {times.map((time) => (
@@ -71,6 +69,6 @@ export function TimeSelection() {
                     </IonRadioGroup>
                 </IonList>
             </IonCardContent>
-        </IonCard>
+        </IonCard >
     );
 }

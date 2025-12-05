@@ -7,11 +7,6 @@ import { FC } from 'react';
 const MenuPage: FC = () => {
     const options = [
         {
-            name: "Profile",
-            body: "Hello, User",
-            onClick: () => console.log("Profile Clicked")
-        },
-        {
             name: "View Data",
             body: "View Backed Up Data",
             onClick: () => console.log("View Data Clicked")
@@ -65,16 +60,6 @@ const MenuPage: FC = () => {
                                 title={"Automatic Backup"}
                                 content={"Data will be backed up every day at midnight"}
                             ></PlainCard>
-                        </IonCol>
-                    </IonRow>
-                    <IonRow>
-                        <IonCol>
-                            <ClickableCardButton
-                                title={"Sign Out"}
-                                content={""}
-                                color={"danger"}
-                                onClick={() => { console.log("Sign out") }}
-                            ></ClickableCardButton>
                         </IonCol>
                     </IonRow>
                 </IonGrid>

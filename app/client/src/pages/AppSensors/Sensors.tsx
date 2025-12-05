@@ -1,4 +1,4 @@
-import { IonButtons, IonChip, IonCol, IonContent, IonGrid, IonHeader, IonLabel, IonPage, IonRow, IonTitle, IonToolbar } from '@ionic/react';
+import { IonButtons, IonChip, IonCol, IonContent, IonGrid, IonHeader, IonLabel, IonPage, IonRefresher, IonRefresherContent, IonRow, IonTitle, IonToolbar, RefresherCustomEvent } from '@ionic/react';
 import './Sensors.css';
 import { SensorCard } from '../../components/AppCards/Cards';
 import { useLifeCycle } from '../../context/LifeCycleContext';
@@ -39,6 +39,12 @@ const SensorsPage: FC = () => {
         }
     ]
 
+    const handleRefresh = (event: RefresherCustomEvent) => {
+        setTimeout(() => {
+            // Any calls to load data go here
+            event.detail.complete();
+        }, 2000);
+    }
 
     return (
         <IonPage>
@@ -53,6 +59,12 @@ const SensorsPage: FC = () => {
                 </IonToolbar>
             </IonHeader>
             <IonContent fullscreen>
+
+                <IonRefresher slot="fixed" pullFactor={0.5} pullMin={100} pullMax={200} onIonRefresh={handleRefresh}>
+                    <IonRefresherContent>
+                    </IonRefresherContent>
+                </IonRefresher>
+
                 <IonHeader collapse="condense">
                     <IonToolbar>
                         <IonTitle size="large">Sensors</IonTitle>

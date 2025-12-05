@@ -1,4 +1,4 @@
-import { IonButtons, IonChip, IonContent, IonHeader, IonLabel, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import { IonButtons, IonChip, IonContent, IonHeader, IonLabel, IonPage, IonRefresher, IonRefresherContent, IonTitle, IonToolbar, RefresherCustomEvent } from '@ionic/react';
 import './Analytics.css';
 import BarGraph from '../../components/AppGraph/Graph';
 import { useLifeCycle } from '../../context/LifeCycleContext';
@@ -35,6 +35,13 @@ const AnalyticsPage: FC = () => {
         }
     ]
 
+    const handleRefresh = (event: RefresherCustomEvent) => {
+        setTimeout(() => {
+            // Any calls to load data go here
+            event.detail.complete();
+        }, 2000);
+    }
+
     return (
         <IonPage>
             <IonHeader>
@@ -48,6 +55,12 @@ const AnalyticsPage: FC = () => {
                 </IonToolbar>
             </IonHeader>
             <IonContent fullscreen>
+
+                <IonRefresher slot="fixed" pullFactor={0.5} pullMin={100} pullMax={200} onIonRefresh={handleRefresh}>
+                    <IonRefresherContent>
+                    </IonRefresherContent>
+                </IonRefresher>
+
                 <IonHeader collapse="condense">
                     <IonToolbar>
                         <IonTitle size="large">Analytics</IonTitle>

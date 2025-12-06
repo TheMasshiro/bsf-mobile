@@ -18,6 +18,14 @@ export interface Reading {
   ammonia: number;
 }
 
+export interface ActuatorControl {
+  lifeCycleStage: "egg" | "larva" | "pupa" | "adult";
+  fanState: number;
+  mistingState: number;
+  heaterState: number;
+  timeState: number;
+}
+
 export interface EggReading {
   id: number;
   eggId: number;

@@ -1,10 +1,23 @@
-import { IonCol, IonContent, IonGrid, IonHeader, IonPage, IonRow, IonTitle, IonToolbar } from '@ionic/react';
+import { IonCol, IonContent, IonGrid, IonHeader, IonPage, IonRow, IonTitle, IonToolbar, RouterDirection, useIonRouter } from '@ionic/react';
 import './Menu.css';
 import { ClickableCardButton } from '../../components/AppButtons/Buttons';
 import { PlainCard } from '../../components/AppCards/Cards';
 import { FC } from 'react';
 
 const MenuPage: FC = () => {
+    const router = useIonRouter()
+
+    const dynamicNavigate = (path: string, direction: RouterDirection) => {
+        const action = direction === "forward" ? "push" : "pop";
+        router.push(path, direction, action)
+    }
+
+    const navigateBack = () => {
+        if (router.canGoBack()) {
+            router.goBack()
+        }
+    }
+
     const options = [
         {
             name: "View Data",
@@ -19,7 +32,7 @@ const MenuPage: FC = () => {
         {
             name: "Settings",
             body: "Open settings",
-            onClick: () => console.log("Settings Clicked")
+            onClick: () => dynamicNavigate("/menu/settings", "forward")
         },
         {
             name: "About",
@@ -43,7 +56,7 @@ const MenuPage: FC = () => {
                 </IonHeader>
                 <IonGrid>
                     {options.map((option, index) => (
-                        <IonRow>
+                        <IonRow key={index}>
                             <IonCol>
                                 <ClickableCardButton
                                     key={index}

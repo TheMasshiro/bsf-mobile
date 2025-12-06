@@ -101,8 +101,7 @@ const AnalyticsPage: FC = () => {
                                             warningLimit={graph.warn}
                                             unit={graph.unit}
                                         ></BarGraph>
-
-                                        <IonRow class="ion-justify-content-center ion-align-items-center">
+                                        <IonRow class="ion-justify-content-center ion-align-items-center legends-row">
                                             <IonChip color="secondary">{graph.sensor} {graph.unit}</IonChip>
                                             <IonChip color="danger">
                                                 <IonLabel>Upper Limit: {graph.max} {graph.unit}</IonLabel>

@@ -4,6 +4,7 @@ import {
   LarvaReading,
   PupaReading,
   AdultReading,
+  ActuatorControl,
 } from "../models/Models";
 import { ModelsUpgradeStatements } from "../upgrades/models.upgrade.statement";
 import { SQLiteDBConnection } from "@capacitor-community/sqlite";
@@ -19,16 +20,19 @@ export interface IStorageService {
   getLarva(id: number): Promise<LarvaReading[]>;
   getPupa(id: number): Promise<PupaReading[]>;
   getAdult(id: number): Promise<AdultReading[]>;
+  getActuator(lifeCycleStage: string): Promise<ActuatorControl[]>;
   updateUserById(id: string, active: number): Promise<void>;
   // updateEggById(id: string): Promise<void>;
   // updateLarvaById(id: string): Promise<void>;
   // updatePupaById(id: string): Promise<void>;
   // updateAdultById(id: string): Promise<void>;
-  deleteUserById(id: string): Promise<void>;
-  // deletEggById(id: string): Promise<void>;
-  // deletLarvaById(id: string): Promise<void>;
-  // deletPupaById(id: string): Promise<void>;
-  // deleteAdultById(id: string): Promise<void>;
+  updateActuatorControl(
+    lifeCycleStage: string,
+    fanState: number,
+    mistingState: number,
+    heaterState: number,
+    timeState: number
+  ): Promise<void>;
   getDatabaseName(): string;
   getDatabaseVersion(): number;
 }
@@ -89,6 +93,15 @@ class StorageService implements IStorageService {
   // Getter
   async getUser(): Promise<User[]> {
     return (await this.db.query("SELECT * FROM users;")).values as User[];
+  }
+
+  async getActuator(lifeCycleStage: string): Promise<ActuatorControl[]> {
+    return (
+      await this.db.query(
+        `SELECT * FROM actuator_control WHERE lifeCycleStage = ?;`,
+        [lifeCycleStage]
+      )
+    ).values as ActuatorControl[];
   }
 
   async getEgg(userId: number): Promise<EggReading[]> {
@@ -184,9 +197,16 @@ class StorageService implements IStorageService {
     await this.db.run(sql);
   }
 
-  // Deleter
-  async deleteUserById(id: string): Promise<void> {
-    const sql = `DELETE FROM users WHERE id=${id}`;
+  async updateActuatorControl(
+    lifeCycleStage: string,
+    fanState: number,
+    mistingState: number,
+    heaterState: number,
+    timeState: number
+  ): Promise<void> {
+    const sql = `UPDATE actuator_control
+      SET fanState=${fanState}, mistingState=${mistingState}, heaterState=${heaterState}, timeState=${timeState}
+      WHERE lifeCycleStage='${lifeCycleStage}'`;
     await this.db.run(sql);
   }
 }

@@ -10,6 +10,21 @@ export const ModelsUpgradeStatements = [
         email TEXT NOT NULL
       );`,
 
+      // Actuator States
+      `CREATE TABLE IF NOT EXISTS actuator_control (
+        lifeCycleStage TEXT PRIMARY KEY,
+        fanState INTEGER,
+        mistingState INTEGER,
+        heaterState INTEGER,
+        timeState INTEGER
+      );`,
+
+      // Insert Actuator Values
+      `INSERT OR IGNORE INTO actuator_control (lifeCycleStage, fanState, mistingState, heaterState, timeState) VALUES ('egg', 0, 0, 0, 0);`,
+      `INSERT OR IGNORE INTO actuator_control (lifeCycleStage, fanState, mistingState, heaterState, timeState) VALUES ('larva', 0, 0, 0, 0);`,
+      `INSERT OR IGNORE INTO actuator_control (lifeCycleStage, fanState, mistingState, heaterState, timeState) VALUES ('pupa', 0, 0, 0, 0);`,
+      `INSERT OR IGNORE INTO actuator_control (lifeCycleStage, fanState, mistingState, heaterState, timeState) VALUES ('adult', 0, 0, 0, 0);`,
+
       // EggReading table
       `CREATE TABLE IF NOT EXISTS egg_readings (
         id INTEGER PRIMARY KEY AUTOINCREMENT,

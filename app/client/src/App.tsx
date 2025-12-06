@@ -43,11 +43,12 @@ import '@ionic/react/css/display.css';
  */
 
 /* import '@ionic/react/css/palettes/dark.always.css'; */
-/* import '@ionic/react/css/palettes/dark.class.css'; */
-import '@ionic/react/css/palettes/dark.system.css';
+import '@ionic/react/css/palettes/dark.class.css';
+// import '@ionic/react/css/palettes/dark.system.css';
 
 /* Theme variables */
 import './theme/variables.css';
+
 import { LifeCycleButton } from './components/AppActionButtons/ActionButtons';
 import { LifeCycleProvider } from './context/LifeCycleContext';
 import { Capacitor } from '@capacitor/core';
@@ -56,6 +57,7 @@ import SqliteService from './services/sqliteService';
 import DbVersionService from './services/dbVersionService';
 import StorageService from './services/storageService';
 import AppInitializer from './components/AppInitializer/AppInitializer';
+import SettingsPage from './pages/AppMenu/AppSettings/Settings';
 
 export const platform = Capacitor.getPlatform();
 
@@ -78,21 +80,20 @@ const App: React.FC = () => {
                                 <IonReactRouter>
                                     <IonTabs>
                                         <IonRouterOutlet>
-                                            <Route exact path="/sensors">
-                                                <SensorsPage />
-                                            </Route>
-                                            <Route exact path="/controls">
-                                                <ControlsPage />
-                                            </Route>
-                                            <Route exact path="/notifications">
-                                                <NotificationsPage />
-                                            </Route>
-                                            <Route path="/analytics">
-                                                <AnalyticsPage />
-                                            </Route>
-                                            <Route path="/menu">
-                                                <MenuPage />
-                                            </Route>
+                                            <Route exact path="/sensors" component={SensorsPage} />
+
+                                            <Route exact path="/controls" component={ControlsPage} />
+
+                                            <Route exact path="/notifications" component={NotificationsPage} />
+
+                                            <Route path="/analytics" component={AnalyticsPage} />
+
+                                            <Route exact path="/menu" component={MenuPage} />
+                                            <Route exact path="/menu/view" component={SettingsPage} />
+                                            <Route exact path="/menu/backup" component={SettingsPage} />
+                                            <Route exact path="/menu/settings" component={SettingsPage} />
+                                            <Route exact path="/menu/about" component={SettingsPage} />
+
                                             <Route exact path="/">
                                                 <Redirect to="/sensors" />
                                             </Route>
@@ -118,7 +119,7 @@ const App: React.FC = () => {
                                                 <IonLabel>Notifications</IonLabel>
                                             </IonTabButton>
 
-                                            <IonTabButton tab="menu" href="/menu">
+                                            <IonTabButton tab="menu" href="/menu/">
                                                 <IonIcon aria-hidden="true" icon={menuOutline} />
                                                 <IonLabel>Menu</IonLabel>
                                             </IonTabButton>

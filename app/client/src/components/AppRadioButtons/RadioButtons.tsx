@@ -1,6 +1,6 @@
 import { IonCard, IonCardContent, IonCardTitle, IonCardHeader, IonItem, IonList, IonRadio, IonRadioGroup, IonCardSubtitle, useIonToast } from '@ionic/react';
 import "./RadioButtons.css"
-import { secondsToTime } from '../../utils/convertToTime';
+import { secondsToTime } from '../../utils/utilities';
 import { createActuatorNotifications } from '../../utils/localNotification';
 
 interface Time {

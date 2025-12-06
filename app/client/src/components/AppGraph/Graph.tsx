@@ -8,11 +8,11 @@ interface BarGraph {
     upperLimit: number,
     lowerLimit: number,
     warningLimit: number,
-
+    unit: string,
 }
 
 Chart.register(annotationPlugin);
-function BarGraph({ sensorType, upperLimit, lowerLimit, warningLimit }: BarGraph) {
+function BarGraph({ sensorType, upperLimit, lowerLimit, warningLimit, unit }: BarGraph) {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const chartRef = useRef<Chart | null>(null);
 
@@ -103,40 +103,14 @@ function BarGraph({ sensorType, upperLimit, lowerLimit, warningLimit }: BarGraph
                 return temperatureData;
             case "humidity":
                 return humidityData;
-            case "moisture":
+            case "substrate moisture":
                 return moistureData;
             default:
                 return temperatureData;
         }
     };
 
-    const getLabel = () => {
-        switch (sensorType.toLowerCase()) {
-            case "temperature":
-                return {
-                    unit: "Temperature",
-                    symbol: "°C  "
-                }
-            case "humidity":
-                return {
-                    unit: "Humidity",
-                    symbol: "%  "
-                }
-            case "moisture":
-                return {
-                    unit: "Substrate Moisture",
-                    symbol: "%  "
-                }
-            default:
-                return {
-                    unit: "Temperature",
-                    symbol: "°C  "
-                }
-        }
-    }
-
     const chartData = getData();
-    const chartLabel = getLabel();
 
     useEffect(() => {
         if (canvasRef.current) {
@@ -145,25 +119,27 @@ function BarGraph({ sensorType, upperLimit, lowerLimit, warningLimit }: BarGraph
             }
 
             chartRef.current = new Chart(canvasRef.current, {
-                type: 'bar',
+                type: 'line',
                 data: {
                     labels: chartData.map(row => row.time),
                     datasets: [{
-                        label: `${chartLabel.unit} ${chartLabel.symbol}`,
+                        label: `${sensorType} ${unit}`,
                         data: chartData.map(row => row.value),
-                        backgroundColor: chartData.map(row => {
-                            if (row.value >= upperLimit) return 'rgba(255, 99, 132, 0.5)';
-                            if (row.value >= warningLimit) return 'rgba(255, 205, 86, 0.5)';
-                            if (row.value <= lowerLimit) return 'rgba(54, 162, 235, 0.5)';
-                            return 'rgba(147, 197, 253, 0.5)';
+                        backgroundColor: 'rgba(96, 165, 250, 0.2)',
+                        borderColor: 'rgba(96, 165, 250, 1)',
+                        borderWidth: 2,
+                        fill: true,
+                        tension: 0.4,
+                        pointBackgroundColor: chartData.map(row => {
+                            if (row.value >= upperLimit) return 'rgba(255, 99, 132, 1)';
+                            if (row.value >= warningLimit) return 'rgba(255, 205, 86, 1)';
+                            if (row.value <= lowerLimit) return 'rgba(54, 162, 235, 1)';
+                            return 'rgba(96, 165, 250, 1)';
                         }),
-                        borderColor: chartData.map(row => {
-                            if (row.value >= upperLimit) return 'rgba(255, 99, 132, 0.8)';
-                            if (row.value >= warningLimit) return 'rgba(255, 205, 86, 0.8)';
-                            if (row.value <= lowerLimit) return 'rgba(54, 162, 235, 0.8)';
-                            return 'rgba(96, 165, 250, 0.8)';
-                        }),
-                        borderWidth: 1
+                        pointBorderColor: '#fff',
+                        pointBorderWidth: 1,
+                        pointRadius: 3,
+                        pointHoverRadius: 6
                     }]
                 },
                 options: {
@@ -199,47 +175,7 @@ function BarGraph({ sensorType, upperLimit, lowerLimit, warningLimit }: BarGraph
                             }
                         },
                         legend: {
-                            display: true,
-                            position: 'top',
-                            align: 'center',
-                            labels: {
-                                font: {
-                                    size: 12,
-                                },
-                                padding: 8,
-                                boxWidth: 22,
-                                boxHeight: 5,
-                                generateLabels: (chart) => {
-                                    const original = Chart.defaults.plugins.legend.labels.generateLabels(chart);
-                                    original.push(
-                                        {
-                                            text: `Upper ${upperLimit}${chartLabel.symbol}`,
-                                            fillStyle: 'transparent',
-                                            strokeStyle: 'rgb(255, 99, 132)',
-                                            lineWidth: 2,
-                                            lineDash: [5, 5],
-                                            pointStyle: 'line',
-                                        },
-                                        {
-                                            text: `Warning ${warningLimit}${chartLabel.symbol}`,
-                                            fillStyle: 'transparent',
-                                            strokeStyle: 'rgb(255, 205, 86)',
-                                            lineWidth: 2,
-                                            lineDash: [5, 5],
-                                            pointStyle: 'line',
-                                        },
-                                        {
-                                            text: `Lower ${lowerLimit}${chartLabel.symbol}`,
-                                            fillStyle: 'transparent',
-                                            strokeStyle: 'rgb(54, 162, 235)',
-                                            lineWidth: 2,
-                                            lineDash: [5, 5],
-                                            pointStyle: 'line',
-                                        }
-                                    );
-                                    return original;
-                                }
-                            },
+                            display: false
                         }
                     }
                 }

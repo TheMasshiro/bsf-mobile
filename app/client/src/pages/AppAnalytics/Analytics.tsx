@@ -1,4 +1,4 @@
-import { IonButtons, IonChip, IonContent, IonHeader, IonLabel, IonPage, IonRefresher, IonRefresherContent, IonTitle, IonToolbar, RefresherCustomEvent } from '@ionic/react';
+import { IonButtons, IonChip, IonCol, IonContent, IonGrid, IonHeader, IonLabel, IonPage, IonRefresher, IonRefresherContent, IonRow, IonSegment, IonSegmentButton, IonSegmentContent, IonSegmentView, IonTitle, IonToolbar, RefresherCustomEvent } from '@ionic/react';
 import './Analytics.css';
 import BarGraph from '../../components/AppGraph/Graph';
 import { useLifeCycle } from '../../context/LifeCycleContext';
@@ -16,22 +16,28 @@ const AnalyticsPage: FC = () => {
 
     const sensorGraphs = [
         {
-            sensor: "temperature",
+            id: "1",
+            sensor: "Temperature",
             max: thresholds.temperature.max,
             min: thresholds.temperature.min,
-            warn: thresholds.temperature.optimal[1]
+            warn: thresholds.temperature.optimal[1],
+            unit: "°C"
         },
         {
-            sensor: "humidity",
+            id: "2",
+            sensor: "Humidity",
             max: thresholds.humidity.max,
             min: thresholds.humidity.min,
-            warn: thresholds.humidity.optimal[1]
+            warn: thresholds.humidity.optimal[1],
+            unit: "%"
         },
         {
-            sensor: "moisture",
+            id: "3",
+            sensor: "Substrate Moisture",
             max: thresholds.moisture.max,
             min: thresholds.moisture.min,
-            warn: thresholds.moisture.optimal[1]
+            warn: thresholds.moisture.optimal[1],
+            unit: "%"
         }
     ]
 
@@ -66,17 +72,56 @@ const AnalyticsPage: FC = () => {
                         <IonTitle size="large">Analytics</IonTitle>
                     </IonToolbar>
                 </IonHeader>
-                {sensorGraphs.map((graph, index) => (
-                    <BarGraph
-                        key={index}
-                        sensorType={graph.sensor}
-                        upperLimit={graph.max}
-                        lowerLimit={graph.min}
-                        warningLimit={graph.warn}
-                    ></BarGraph>
-                ))}
+                <IonGrid>
+                    <IonRow>
+                        <IonCol>
+                            <IonSegment>
+                                <IonSegmentButton value="temperature" contentId='1'>
+                                    <IonLabel class="segment-label">Temperature °C</IonLabel>
+                                </IonSegmentButton>
+                                <IonSegmentButton value="humidity" contentId='2'>
+                                    <IonLabel class="segment-label">Humidity %</IonLabel>
+                                </IonSegmentButton>
+                                <IonSegmentButton value="moisture" contentId='3'>
+                                    <IonLabel class="segment-label">Moisture %</IonLabel>
+                                </IonSegmentButton>
+                            </IonSegment>
+                        </IonCol>
+                    </IonRow>
+                    <IonRow>
+                        <IonCol>
+                            <IonSegmentView>
+                                {sensorGraphs.map((graph, index) => (
+                                    <IonSegmentContent key={index} id={graph.id} >
+                                        <BarGraph
+                                            key={index}
+                                            sensorType={graph.sensor}
+                                            upperLimit={graph.max}
+                                            lowerLimit={graph.min}
+                                            warningLimit={graph.warn}
+                                            unit={graph.unit}
+                                        ></BarGraph>
+
+                                        <IonRow class="ion-justify-content-center ion-align-items-center">
+                                            <IonChip color="secondary">{graph.sensor} {graph.unit}</IonChip>
+                                            <IonChip color="danger">
+                                                <IonLabel>Upper Limit: {graph.max} {graph.unit}</IonLabel>
+                                            </IonChip>
+                                            <IonChip color="warning">
+                                                <IonLabel>Warning Limit: {graph.warn} {graph.unit}</IonLabel>
+                                            </IonChip>
+                                            <IonChip color="primary">
+                                                <IonLabel>Lower Limit: {graph.min} {graph.unit}</IonLabel>
+                                            </IonChip>
+                                        </IonRow>
+                                    </IonSegmentContent>
+                                ))}
+                            </IonSegmentView>
+                        </IonCol>
+                    </IonRow>
+                </IonGrid>
             </IonContent>
-        </IonPage>
+        </IonPage >
     );
 };
 

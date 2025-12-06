@@ -1,8 +1,8 @@
-import { FC, useContext, useEffect, useRef } from "react";
+import { FC, useContext, useEffect, useRef, useState } from "react";
 import { SqliteServiceContext } from "../../App";
 import { StorageServiceContext } from "../../App";
 import InitializeAppService from "../../services/initializeAppService";
-import { useIonToast } from "@ionic/react";
+import { IonSpinner, useIonToast } from "@ionic/react";
 
 interface AppInitializerProps {
     children: any
@@ -15,12 +15,14 @@ const AppInitializer: FC<AppInitializerProps> = ({ children }) => {
     const initializeAppService = new InitializeAppService(sqliteService,
         storageService);
 
+    const [isInitialized, setIsInitialized] = useState(false);
     const [present] = useIonToast();
 
     useEffect(() => {
         const initApp = async (): Promise<void> => {
             try {
-                const appInit = await initializeAppService.initializeApp();
+                await initializeAppService.initializeApp();
+                setIsInitialized(true);
                 return;
             } catch (error: any) {
                 const msg = error.message ? error.message : error;
@@ -38,6 +40,9 @@ const AppInitializer: FC<AppInitializerProps> = ({ children }) => {
 
     }, []);
 
+    if (!isInitialized) {
+        return <IonSpinner name="dots"></IonSpinner>
+    }
     return <>{children}</>;
 };
 

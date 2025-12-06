@@ -7,7 +7,8 @@ export const ModelsUpgradeStatements = [
         id TEXT PRIMARY KEY,
         espId TEXT NOT NULL,
         name TEXT NOT NULL,
-        email TEXT NOT NULL
+        email TEXT NOT NULL,
+        mode number
       );`,
 
       // Actuator States
